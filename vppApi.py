@@ -6,7 +6,7 @@ app = Flask(__name__)
 _users = []
 
 @app.route('/users')
-def getUsers():
+def get_users():
     user = User()
     user.userName = 'maxneo'
     user.email = 'max@gmail.com'
@@ -15,8 +15,8 @@ def getUsers():
     return jsonify(users=_users)
 
 @app.route('/user', methods=['POST'])
-def addUser():
+def add_user():
     json = request.json
-    print(json)
-    # Render template
+    _users.append(json)
     return jsonify(json)
+
