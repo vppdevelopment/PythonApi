@@ -6,17 +6,18 @@ app = Flask(__name__)
 
 @app.route('/users')
 def get_users():
-    users_result = []
     config_mongo = configure_and_connect('users')
-    query_users(config_mongo, users_result)
+    users_result = query_users(config_mongo)
     config_mongo['client'].close()
     return dumps(users_result)
 
-def query_users(config_mongo, users_result):
+def query_users(config_mongo):
+    users_result = []
     if config_mongo['collection'].count() > 0:
         cursor = config_mongo['collection'].find()
         for doc in cursor:
             users_result.append(doc)
+    return users_result
 
 @app.route('/user', methods=['POST'])
 def add_user():
