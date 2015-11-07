@@ -1,31 +1,35 @@
-from flask import Flask, jsonify, request
-from common.messages import User
+from flask import Flask, request
 from pymongo import mongo_client
+from bson.json_util import dumps
 
 app = Flask(__name__)
 
-_users = []
-
 @app.route('/users')
 def get_users():
-    configMongo = configure_and_connect('users')
-    if configMongo['collection'].count() > 0:
-        qusers = configMongo['collection'].find()
-    else:
-        qusers = {}
-    print(qusers)
-    return jsonify(users = qusers)
+    users_result = []
+    config_mongo = configure_and_connect('users')
+    query_users(config_mongo, users_result)
+    config_mongo['client'].close()
+    return dumps(users_result)
+
+def query_users(config_mongo, users_result):
+    if config_mongo['collection'].count() > 0:
+        cursor = config_mongo['collection'].find()
+        for doc in cursor:
+            users_result.append(doc)
 
 @app.route('/user', methods=['POST'])
 def add_user():
-    json = request.json
-    _users.append(json)
-    return jsonify(json)
+    user_data = request.json
+    config_mongo = configure_and_connect('users')
+    config_mongo['collection'].insert(user_data)
+    config_mongo['client'].close()
+    return dumps(user_data)
 
-def configure_and_connect(collectionName):
+def configure_and_connect(collection_name):
     client = mongo_client.MongoClient('mongodb://ds031651.mongolab.com:31651')
     database = client['vppdev']
     database.authenticate('vppdev', 'vpp2015', mechanism='SCRAM-SHA-1')
-    collection = database[collectionName]
-    return { 'client': client, 'collection': collection }
+    collection = database[collection_name]
+    return {'client': client, 'collection': collection}
 

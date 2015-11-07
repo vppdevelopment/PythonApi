@@ -1,7 +1,8 @@
-__author__ = 'maxne'
+__author__ = 'maxneo'
 
 import unittest
 from pymongo import mongo_client
+from bson.json_util import dumps
 
 class MongoDataManipulationTest(unittest.TestCase):
 
@@ -12,15 +13,17 @@ class MongoDataManipulationTest(unittest.TestCase):
        collection = database['registro']
        document = collection.find_one()
        client.close()
-       print(document)
+       print(type(document))
 
     def test_insertion(self):
         client = mongo_client.MongoClient('mongodb://ds031651.mongolab.com:31651')
         database = client['vppdev']
         database.authenticate('vppdev', 'vpp2015', mechanism='SCRAM-SHA-1')
         collection = database['registro']
-        newDocument = {'Port': 25, 'Server': 'localhost', 'api':'custom' }
-        collection.insert(newDocument)
+        new_document = {u'Port': 25, u'Server': u'localhost', u'api':u'custom' }
+        print(type(new_document))
+        collection.insert(new_document)
+        print(dumps(new_document))
 
 if __name__ == '__main__':
     unittest.main()
