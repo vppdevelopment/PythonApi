@@ -15,6 +15,8 @@
  > `"venv/Scripts/deactivate.bat"`
 5. Instalar flask
 >`pip install flask`
+6. Instalar pymongo
+>`pip install pymongo`
 6. Guardar requerimientos instalados
 >`pip freeze > requirements.txt`
 >
