@@ -17,7 +17,9 @@
 >`pip install flask`
 6. Instalar pymongo
 >`pip install pymongo`
-6. Guardar requerimientos instalados
+7. Guardar requerimientos instalados
 >`pip freeze > requirements.txt`
 >
 >`pip install -r requirements.txt`
+8. [OAuth Server](https://github.com/lepture/example-oauth2-server)
+8. [creating-an-executable-from-a-python-script](https://mborgerson.com/creating-an-executable-from-a-python-script)
