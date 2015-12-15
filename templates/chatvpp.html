@@ -1,0 +1,22 @@
+<html>
+<head>
+  <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+</head>
+	<body>
+		<script>
+			function cleanText()
+			{
+				var emailtext = document.getElementById("email");
+				emailtext.value = "";
+        var ref = new Firebase("https://blazing-torch-1750.firebaseio.com/");
+        var usersRef = ref.child("locations");
+        usersRef.update({
+          address: { cll:'85', cra:'200' }
+        });
+			}
+		</script>
+		<strong>Contenido web app</strong>
+		<input id="email"></input>
+		<button id="send" onclick="cleanText()" >Enviar correo</button>
+	</body>
+</html>
