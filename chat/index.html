@@ -1,14 +1,22 @@
 <html>
 <head>
+  <title>Global chat</title>
+  <link rel="stylesheet" type="text/css" href="cb_style.css">
   <script src='index.js'></script>
-  <script src='persistence/emailsIO.js' defer></script>
+  <script src='persistence/messagesIO.js' defer></script>
   <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 </head>
 	<body onload="init()" >
-		<input id="email"></input>
-		<button id="send" onclick="SaveEmail()" >Guardar correo</button>
-    <br/>
-    <ol id="emailList">
-    </ol>
+    <table>
+      <tr><td>
+        <div id="chatBox"></div>
+      </tr></td>
+      <tr><td>
+        <div>
+          <input id="message"></input>
+          <button id="send" onclick="SendMessage()">Enviar</button>
+        </div>
+      </tr></td>
+    </table>
 	</body>
 </html>

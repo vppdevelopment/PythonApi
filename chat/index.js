@@ -1,22 +1,23 @@
-function SaveEmail()
+function SendMessage()
 {
-  var emailtext = document.getElementById("email");
-  addEmail(emailtext.value,
+  addMessage(message.value,
     {
-      email : emailtext.value
+      email : message.value
     }
   );
-  emailtext.value = "";
+  message.value = "";
 }
 
 function init()
 {
-  var emailList = document.getElementById("emailList");
-  onEmailAdded(function(snapshot)
+  onMessageAdded(function(snapshot)
   {
-    var node = document.createElement("LI");
+    var node = document.createElement("span");
+    var breakLine = document.createElement("br");
     var textnode = document.createTextNode(snapshot.val().email);
     node.appendChild(textnode);
-    emailList.appendChild(node);
+    chatBox.appendChild(node);
+    chatBox.appendChild(breakLine);
+    chatBox.scrollTop=chatBox.scrollHeight
   });
 }
