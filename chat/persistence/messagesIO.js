@@ -1,10 +1,9 @@
 var rootIO = new Firebase("https://blazing-torch-1750.firebaseio.com/");
-var emailsIO = new Firebase("https://blazing-torch-1750.firebaseio.com/emails");
+var emailsIO = new Firebase("https://blazing-torch-1750.firebaseio.com/messages");
 
-function addMessage(key, content)
+function addMessage(content)
 {
-  var emailsRef = rootIO.child("emails");
-  emailsRef.child(key).set(content);
+  emailsIO.push(content);
 }
 
 function onMessageAdded(refresh)

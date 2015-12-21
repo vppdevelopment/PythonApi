@@ -1,11 +1,18 @@
 function SendMessage()
 {
-  addMessage(message.value,
+  addMessage(
     {
-      email : message.value
+      content : message.value
     }
   );
   message.value = "";
+}
+
+function EvaluateSendMessage(e)
+{
+  var charCode = (typeof e.which === "number") ? e.which : e.keyCode;
+  if(charCode == 13)
+   send.click();
 }
 
 function init()
@@ -14,7 +21,7 @@ function init()
   {
     var node = document.createElement("span");
     var breakLine = document.createElement("br");
-    var textnode = document.createTextNode(snapshot.val().email);
+    var textnode = document.createTextNode(snapshot.val().content);
     node.appendChild(textnode);
     chatBox.appendChild(node);
     chatBox.appendChild(breakLine);
