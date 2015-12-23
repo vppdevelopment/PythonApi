@@ -4,6 +4,7 @@
   <link rel="stylesheet" type="text/css" href="cb_style.css">
   <script src='index.js'></script>
   <script src='persistence/messagesIO.js' defer></script>
+  <script src='time\timeDecoder.js' defer></script>
   <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 </head>
 	<body onload="init()" >
@@ -18,7 +19,7 @@
       <tr><td>
         <div>
           <input id="message" onkeyup="EvaluateSendMessage(event)"></input>
-          <button id="send" onclick="SendMessage()">Enviar</button>
+          <button id="send" onclick="SendMessage()" disabled>Enviar</button>
         </div>
       </td></tr>
     </table>
