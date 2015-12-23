@@ -9,14 +9,18 @@
 	<body onload="init()" >
     <table>
       <tr><td>
-        <div id="chatBox"></div>
+        <legend>User name:</legend>
+        <input id="signInName" onchange="VerifyUserName()"></input>
       </tr></td>
+      <tr><td>
+        <div id="chatBox"></div>
+      </td></tr>
       <tr><td>
         <div>
           <input id="message" onkeyup="EvaluateSendMessage(event)"></input>
           <button id="send" onclick="SendMessage()">Enviar</button>
         </div>
-      </tr></td>
+      </td></tr>
     </table>
 	</body>
 </html>
